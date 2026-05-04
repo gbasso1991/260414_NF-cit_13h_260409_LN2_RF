@@ -472,7 +472,7 @@ ax.set_xlabel('t (s)')
 plt.suptitle('95% CPA (475 uL) - 5% NF@cit_13h (25 uL)')
 plt.savefig('presentacion_G3M_95_CPA_475-25.png',dpi=300)
 #%% Ahora comparo los 4 en la misma figura para la presentacion de G3M
-fig,axs=plt.subplots(3,1,figsize=(18,9),constrained_layout=True,sharex=True)
+fig,axs=plt.subplots(3,1,figsize=(17,8.4),constrained_layout=True,sharex=True)
 
 for j in range(3):
     _,t,T, _ = lector_templog(paths_152_1[j])
