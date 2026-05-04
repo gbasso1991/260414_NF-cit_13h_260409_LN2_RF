@@ -405,37 +405,98 @@ ax3.set_xlabel('t (s)')
 plt.suptitle('Comparación de calentamientos a $H_0$ = 58 kA/m (152 dA) - $f$ = 300 kHz')
 plt.savefig('comparacion_calentamientos_152dA_400-100_425-75_450-50_475-25.png',dpi=300)
 
+# %% Comparativa para la presentacion de G3M
+# 80% cpa 
 
-# fig, axs =plt.subplots(3,1,figsize=(12,9),constrained_layout=True,sharex=True)
+fig, ax =plt.subplots(figsize=(12,5),constrained_layout=True)
+for i,r in enumerate(paths_152_1):
+    _,t,T, _ = lector_templog(r)
+    ax.plot(t,T,'.-',label=r.split('_')[-1][:-4])
 
-# for j in range(3):
-#     _,t,T, _ = lector_templog(paths_400_100[j])
-#     axs[j].plot(t,T,'.-',label='CPA 400 uL - FF 100 uL')
+ax.axhline(y=0,c='k',lw=0.8,label='T = 0°C')
+ax.axhline(-43,c='k',ls='--',lw=0.8,label='T$_m$ = -43°C')
+ax.axhline(-121,c='k',ls='-.',lw=0.8,label='T$_g$ = -121°C')
+ax.grid()
+ax.legend(ncol=2,frameon=True,shadow=True)
+ax.set_ylabel('T (ºC)')
+ax.set_xlim(0,200) 
+ax.set_xlabel('t (s)')     
+plt.suptitle('80% CPA (400 uL) - 20% NF@cit_13h (100 uL)') 
+plt.savefig('presentacion_G3M_80_CPA_400-100.png',dpi=300)
+#%% 85% cpa
+fig, ax =plt.subplots(figsize=(12,5),constrained_layout=True)
+for i,r in enumerate(paths_152_2):
+    _,t,T, _ = lector_templog(r)
+    ax.plot(t,T,'.-',label=r.split('_')[-1][:-4])
 
+ax.axhline(y=0,c='k',lw=0.8,label='T = 0°C')    
+ax.axhline(-43,c='k',ls='--',lw=0.8,label='T$_m$ = -43°C')
+ax.axhline(-121,c='k',ls='-.',lw=0.8,label='T$_g$ = -121°C')
+ax.grid()
+ax.legend(ncol=2,frameon=True,shadow=True)
+ax.set_ylabel('T (ºC)')
+ax.set_xlim(0,200) 
+ax.set_xlabel('t (s)')     
+plt.suptitle('85% CPA (425 uL) - 15% NF@cit_13h (75 uL)')
+plt.savefig('presentacion_G3M_85_CPA_425-75.png',dpi=300)
+#%% 90% cpa 
+fig, ax =plt.subplots(figsize=(12,5),constrained_layout=True)
+for i,r in enumerate(paths_152_3):
+    _,t,T, _ = lector_templog(r)
+    ax.plot(t,T,'.-',label=r.split('_')[-1][:-4])
 
-#     _,t,T, _ = lector_templog(paths_425_75[j])
-#     axs[j].plot(t,T,'.-',label='CPA 425 uL - FF 75 uL')
+ax.axhline(y=0,c='k',lw=0.8,label='T = 0°C')    
+ax.axhline(-43,c='k',ls='--',lw=0.8,label='T$_m$ = -43°C')
+ax.axhline(-121,c='k',ls='-.',lw=0.8,label='T$_g$ = -121°C')
+ax.grid()
+ax.legend(ncol=2,frameon=True,shadow=True)
+ax.set_ylabel('T (ºC)')
+ax.set_xlim(0,200)
+ax.set_xlabel('t (s)')    
+plt.suptitle('90% CPA (450 uL) - 10% NF@cit_13h (50 uL)')
+plt.savefig('presentacion_G3M_90_CPA_450-50.png',dpi=300)
+#%% 95% cpa 
+fig, ax =plt.subplots(figsize=(12,5),constrained_layout=True)
+for i,r in enumerate(paths_152_4):
+    _,t,T, _ = lector_templog(r)
+    ax.plot(t,T,'.-',label=r.split('_')[-1][:-4])
 
+ax.axhline(y=0,c='k',lw=0.8,label='T = 0°C')    
+ax.axhline(-43,c='k',ls='--',lw=0.8,label='T$_m$ = -43°C')
+ax.axhline(-121,c='k',ls='-.',lw=0.8,label='T$_g$ = -121°C')
+ax.grid()
+ax.legend(ncol=2,frameon=True,shadow=True)
+ax.set_ylabel('T (ºC)')
+ax.set_xlim(0,230)
+ax.set_xlabel('t (s)')    
+plt.suptitle('95% CPA (475 uL) - 5% NF@cit_13h (25 uL)')
+plt.savefig('presentacion_G3M_95_CPA_475-25.png',dpi=300)
+#%% Ahora comparo los 4 en la misma figura para la presentacion de G3M
+fig,axs=plt.subplots(3,1,figsize=(18,9),constrained_layout=True,sharex=True)
+
+for j in range(3):
+    _,t,T, _ = lector_templog(paths_152_1[j])
+    axs[j].plot(t,T,'.-',label='80% CPA - 20% FF')
+
+    _,t,T, _ = lector_templog(paths_152_2[j])
+    axs[j].plot(t,T,'.-',label='85% CPA - 15% FF')
     
-#     _,t,T, _ = lector_templog(paths_450_50[j])
-#     axs[j].plot(t,T,'.-',label='CPA 450 uL - FF 50 uL')
+    _,t,T, _ = lector_templog(paths_152_3[j])
+    axs[j].plot(t,T,'.-',label='90% CPA - 10% FF')
 
-#     _,t,T, _ = lector_templog(paths_475_25[j])
-#     axs[j].plot(t,T,'.-',label='CPA 475 uL - FF 25 uL')
-
-
-# for a in axs:
-#     a.grid()
-#     a.set_ylabel('T (ºC)')
-#     a.set_xlim(0,250)
-#     a.axhline(y=0,c='k',lw=0.8,label='T = 0°C')
-#     a.axhline(-43,c='k',ls='--',lw=0.8,label='T$_m$ = -43°C')
-#     a.axhline(-121,c='k',ls='-.',lw=0.8,label='T$_g$ = -121°C')
-#     a.legend(ncol=2,frameon=True,shadow=True)
-# ax3.set_xlabel('t (s)')
-# plt.suptitle('Comparación de calentamientos a $H_0$ = 58 kA/m (152 dA) - $f$ = 300 kHz')
-# plt.savefig('comparacion_calentamientos_152dA_400-100_425-75_450-50_475-25.png',dpi=300)
-# %% Idem pero cambio labels
+    _,t,T, _ = lector_templog(paths_152_4[j])
+    axs[j].plot(t,T,'.-',label='95% CPA -  5% FF')
 
 
-# %%
+for a in axs:
+    a.grid()
+    a.set_ylabel('T (ºC)')
+    a.set_xlim(0,230)
+    a.axhline(y=0,c='k',lw=0.8,label='T = 0°C')
+    a.axhline(-43,c='k',ls='--',lw=0.8,label='T$_m$ = -43°C')
+    a.axhline(-121,c='k',ls='-.',lw=0.8,label='T$_g$ = -121°C')
+    a.legend(ncol=2,frameon=True,shadow=True,loc='lower right')
+    
+axs[2].set_xlabel('t (s)')
+plt.suptitle('Comparación de calentamientos a $H_0=58$ kA/m - $f= 300$ kHz')
+plt.savefig('presentacion_G3M_comparacion_80-85-90-95 RT.png',dpi=300)
